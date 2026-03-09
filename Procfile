@@ -1,1 +1,1 @@
-python manage.py migrate && gunicorn HashFlix.wsgi --log-file -
+web: python manage.py migrate && gunicorn HashFlix.wsgi:application --log-file -
