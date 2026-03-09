@@ -1,0 +1,54 @@
+{% load static %}
+<header>
+  <div class="header w-full fixed z-50 px-4 py-3 md:flex  md:justify-between ">
+
+
+    <!-- LINHA SUPERIOR: LOGO + LOGIN -->
+    <div class="  w-full flex items-center justify-between ">
+      <a href="{% url 'contas:homefilmes' %}">
+        <img src="{% static 'img/hashflix.png'%}" alt="logo">
+      </a>
+
+      {% if not user.is_authenticated %}
+      <a href="{% url 'contas:login'%}" class="md:ml-auto md:ml-auto">
+        <button class="bg-red-600 text-white py-1 px-3 rounded-md ">
+          Login
+        </button>
+      </a>
+      {% endif %}
+    </div>
+
+    <!-- RESTO DOS MENUS (NÃO MEXE) -->
+
+    {% if user.is_authenticated %}
+    <div class="flex flex-col md:flex-row gap-2 mt-2 md:w-5/12 md:justify-end">
+
+
+      <form method="get" action="{% url 'contas:pesquisar' %}">
+        <input
+          type="text"
+          class="w-full py-1 px-2 rounded-md text-black bg-white"
+          placeholder="Pesquisar..."
+          name="query"
+        >
+      </form>
+
+      <a href="{% url 'contas:logout'%}">
+        <button class="w-full bg-red-600 text-white py-1 px-3 rounded-md">
+          Sair
+        </button>
+      </a>
+      {% if request.resolver_match.url_name != 'editarperfil' and request.resolver_match.url_name != 'mudarsenha' %}
+
+      <a href="{% url 'contas:editarperfil' request.user.pk %}">
+        <button class="w-full bg-red-600 text-white py-1 px-3 rounded-md">
+          Editar Perfil
+        </button>
+      </a>
+      {% endif %}
+
+      {% endif %}
+    </div>
+
+  </div>
+</header>

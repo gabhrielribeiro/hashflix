@@ -1,0 +1,26 @@
+<h1>Sistema de Postagem de Filmes</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Título do Filme:</label><br>
+    {{ form.titulo }}<br><br>
+
+    <label>Descrição:</label><br>
+    {{ form.descricao }}<br><br>
+
+    <label>Capa:</label><br>
+    {{ form.capa }}<br><br>
+
+    <label>Categoria:</label><br>
+    {{ form.categorias }}<br><br>
+
+    <button type="submit">Salvar Filme</button>
+</form>
+
+
+<h2>Filmes postados</h2>
+
+{% for filme in filmes_postados %}
+<p>{{filme}} <a href="{% url 'filme:filme_edit' filme.pk %}">Editar</a> <a href="">Excluir</a></p>
+{% endfor %}

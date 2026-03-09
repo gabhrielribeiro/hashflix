@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block titulo %}
+Contas
+{% endblock %}
+
+{% block content %}
+<h1 class="py-20 text-4xl font-semibold">Contas Registradas: </h1>
+
+{% for conta in lista_contas %}
+<p class="text-3xl ">{{conta}}</p>
+<p>Idade: {{conta.idade}}</p>
+<p>Trabalho: {{conta.job}}</p>
+<p>Contato: {{conta.email}}</p>
+<img  class="py-3" src="{{conta.img_perfil.url}}">
+{% endfor %}
+{% endblock %}

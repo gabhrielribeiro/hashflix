@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+pagina de detalhes
+{% endblock %}
+
+
+
+{% block head %}
+<style>
+
+.link-episodio:visited {
+    color: blue; /* cinza (gray-400) */
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="w-full min-h-screen flex items-end bg-cover bg-no-repeat " style="background-image:url('{{filme.capa.url}}');">
+   <div class="h-full pl-5 pb-12">
+       <h2 class="text-3xl md:text-6xl font-semibold pb-3">{{filme.titulo}}</h2>
+       <p class="font-semibold">{{ filme.descricao|slice:":200"}}</p>
+        {% if filme.episodios.first %}
+       <a class="text-black font-semibold flex items-center" href="{% url 'filme:epsodio' filme.episodios.first.pk %} ">
+
+
+       <button class="mt-4 px-14 py-2 bg-white rounded-md flex items-center">
+
+
+               <ion-icon name="play" class="text-2xl mr-1"></ion-icon>
+               Play
+
+
+
+       </button> </a>
+       {% else %}
+
+       <a class="text-black font-semibold flex items-center" href=" ">
+
+
+       <button class="mt-4 px-14 py-2 bg-white rounded-md flex items-center">
+
+
+               <ion-icon name="play" class="text-2xl mr-1"></ion-icon>
+               Play
+
+
+
+       </button> </a>
+       {% endif %}
+   </div>
+</section>
+
+<main class="w-full flex justify-center py-16">
+
+    <div class="w-10/12">
+        <div>
+            <h2 class="text-3xl font-semibold ">Descrição</h2>
+            <p class="text-gray-100 text-lg">{{filme.descricao}}</p>
+            <p>Visualizações:  {{filme.visulizacao}}</p>
+         </div>
+
+        <div class="pt-10">
+             <h2 class="text-3xl font-semibold">Episódios:</h2>
+             {% for episodio in filme.episodios.all %}
+
+            <a href="{% url 'filme:epsodio' episodio.pk %}" class=" visited:text-red-600 text-gray-100 "><p class="text-lg">{{episodio.titulo}}</p></a>
+             {% endfor %}
+
+         </div>
+
+        <div class="pt-40 ">
+            <h2 class="text-3xl font-semibold mb-4">Relacionados </h2>
+             <div class="flex flex-col md:flex-row md:flex-wrap">
+             {% for relacionado in filmes_relacionados %}
+
+            <div class=" w-12/12 md:w-4/12 mr-1 md:mr-11 mb-12">
+                <a href="{% url 'filme:filme_detalhe' relacionado.id %}"><img class="rounded-md" src="{{relacionado.capa.url}}"></a>
+            </div>
+
+
+             {% endfor %}
+                  </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+</div>
+{% endblock %}

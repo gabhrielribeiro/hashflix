@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+   {% block titulo %}
+      Pagina Inicial
+    {% endblock %}
+  </title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2️⃣ Depois define a configuração -->
+  <script>
+
+
+    tailwind.config = {
+      theme: {
+        extend: {},
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1536px',
+          tablet: { min: '768px', max: '1023px' },
+          notbook: { min: '1024px', max: '1439px'},
+        },
+      },
+    };
+
+    // 3️⃣ Recarrega o Tailwind com a nova config
+    tailwind.refresh();
+
+
+
+  </script>
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+{% block head %}
+
+    {% endblock %}
+</head>
+<body class="bg-black text-gray-100 font-primary">
+{% include 'nav.html'%}
+{% block content %}
+
+{% endblock %}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    const header = document.querySelector('.header')
+
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY
+
+      if (scroll > 100) {
+        if (scroll > window.innerHeight) {
+          header.classList.add('invisible')
+        } else {
+          header.classList.add('bg-gray-900')
+          header.classList.remove('invisible')
+        }
+      } else {
+        header.classList.remove('bg-gray-900', 'invisible')
+      }
+    })
+  </script>
+
+
+
+
+
+
+
+
+</body>
+</html>

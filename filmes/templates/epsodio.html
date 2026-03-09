@@ -1,0 +1,549 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episódio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2️⃣ Depois define a configuração -->
+  <script>
+
+
+    tailwind.config = {
+      theme: {
+        extend: {},
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1536px',
+          tablet: { min: '768px', max: '1023px' },
+          notbook: { min: '1024px', max: '1439px'},
+        },
+      },
+    };
+
+    // 3️⃣ Recarrega o Tailwind com a nova config
+    tailwind.refresh();
+
+
+
+  </script>
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1570px;
+            margin: auto;
+            padding: 16px;
+        }
+
+        .block{
+            margin-top:60px;
+        }
+
+        /* Botão voltar */
+        .btn-voltar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .btn-voltar:hover {
+            opacity: 0.7;
+        }
+
+        /* Título */
+        .titulo {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        /* Episódio */
+        .episodio {
+            font-size: 17px;
+            color: #bbb;
+            margin-bottom: 18px;
+        }
+
+        /* Vídeo responsivo */
+        .video-container {
+            width: 100%;
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Ajustes MOBILE */
+        @media (max-width: 600px) {
+            .titulo {
+                font-size: 22px;
+            }
+
+            .episodio {
+                font-size: 15px;
+            }
+
+            .btn-voltar {
+                font-size: 16px;
+            }
+
+            .block{
+            margin-top:180px;
+        }
+        }
+
+ .comentarios {
+    max-width:100%;
+    margin: 40px auto;
+}
+
+.comentarios h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* FORM COMENTÁRIO PRINCIPAL */
+.form-comentario {
+    display: flex;
+    gap: 14px;
+    background: #111;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.form-comentario textarea {
+    width: 100%;
+    min-height: 80px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+    resize: none;
+}
+
+.form-comentario button {
+    background: #4f8cff;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Comentário */
+.comentario {
+    display: flex;
+    gap: 14px;
+    background: #111;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.conteudo {
+    flex: 1;
+}
+
+.nome {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.texto {
+    margin: 6px 0 10px;
+    color: #ddd;
+}
+
+/* Ações */
+.acoes {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+}
+
+.acoes button {
+    background: none;
+    border: none;
+    color: #4f8cff;
+    cursor: pointer;
+    padding: 0;
+}
+
+.acoes button:hover {
+    text-decoration: underline;
+}
+
+/* Form resposta */
+.form-resposta {
+    display: none;
+    margin-top: 12px;
+}
+
+.form-resposta textarea {
+    width: 100%;
+    min-height: 70px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+}
+
+.form-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.form-acoes .cancelar {
+    background: none;
+    border: none;
+    color: #aaa;
+}
+
+.form-acoes .enviar {
+    background: #4f8cff;
+    border: none;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+/* Respostas */
+.respostas {
+    display: none;
+    margin-top: 14px;
+    margin-left: 40px;
+}
+
+.resposta {
+    background: #0d0d0d;
+    padding: 12px;
+    border-radius: 8px;
+}
+.texto a {
+    color: #4f8cff;
+    text-decoration: underline;
+    word-break: break-word;
+}
+    </style>
+</head>
+<body  >
+
+    {% include 'nav.html'%}
+
+    <div class="container  ">
+
+
+        <div class="block">
+        <!-- Botão Voltar -->
+        <a class="btn-voltar" href="javascript:history.back()">
+            ← Voltar
+        </a>
+
+        <!-- Título -->
+        <div class="titulo">
+            {{object.titulo}}
+        </div>
+
+        <!-- Episódio -->
+        <div class="episodio">
+            Episódio {{object.numero}}
+        </div>
+
+        <!-- Vídeo -->
+        <div class="video-container">
+            <video controls playsinline>
+                <source src="{{ object.video.url }}" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+        </div>
+
+    </div>
+<!-- ABAS -->
+<div class="flex gap-6 mt-10 border-b border-gray-800 pb-2">
+    <button id="btnMaterial"
+        class="text-white font-semibold border-b-2 border-blue-500 pb-1">
+        Material
+    </button>
+
+    <button id="btnComentarios"
+        class="text-gray-400 hover:text-white">
+        Comentários
+    </button>
+
+
+</div>
+<div id="secaoComentarios" class="comentarios hidden">
+    <h2>Comentários</h2>
+
+    <!-- FORMULÁRIO COMENTÁRIO PRINCIPAL -->
+    <form method="post"
+      action="{% url 'filme:criar_comentario' object.id %}"
+      class="form-comentario">
+
+    {% csrf_token %}
+
+    {% if user.foto_perfil %}
+        <img src="{{ user.foto_perfil.url }}" class="avatar">
+    {% endif %}
+
+    <div style="flex:1">
+        <textarea
+            name="texto"
+            placeholder="Escreva um comentário..."
+            required></textarea>
+
+        <button type="submit">Comentar</button>
+    </div>
+</form>
+
+
+    <!-- LISTA DE COMENTÁRIOS -->
+    <div id="lista-comentarios">
+    {% for comentario in comentarios %}
+        <div class="comentario">
+
+            {% if comentario.usuario.foto_perfil %}
+            <img src="{{ comentario.usuario.foto_perfil.url }}" class="avatar">
+
+            {% else %}
+
+              <img src="{% static 'img/avatar_padrao.png' %}" class="avatar">
+
+            {% endif%}
+
+            <div class="conteudo">
+                <span class="nome">{{ comentario.usuario.username }}</span>
+                <p class="texto">{{ comentario.texto|urlize|linebreaksbr }}</p>
+
+                <div class="acoes">
+                    <button onclick="abrirFormulario(this)">Responder</button>
+                    <button onclick="toggleRespostas(this)"
+                    data-texto="Ver respostas ({{ comentario.respostas.count }})">
+                    Ver respostas ({{ comentario.respostas.count }})
+                    </button>
+                </div>
+
+                <!-- FORM RESPOSTA -->
+                <form method="post"
+                      action="{% url 'filme:criar_comentario' object.id %}"
+                      class="form-resposta">
+
+                    {% csrf_token %}
+                    <input type="hidden" name="parent_id" value="{{ comentario.id }}">
+
+                    <textarea name="texto"
+                              placeholder="Escreva sua resposta..."></textarea>
+
+                    <div class="form-acoes">
+                        <button type="button"
+                                class="cancelar"
+                                onclick="fecharFormulario(this)">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="enviar">
+                            Responder
+                        </button>
+                    </div>
+                </form>
+
+                <!-- RESPOSTAS -->
+                <div class="respostas">
+                    {% for resposta in comentario.respostas.all %}
+                        <div class="comentario resposta">
+                            {% if resposta.usuario.foto_perfil %}
+                            <img src="{{ resposta.usuario.foto_perfil.url }}" class="avatar">
+                            {% else %}
+
+                              <img src="{% static 'img/avatar_padrao.png' %}" class="avatar">
+
+                            {% endif %}
+                            <div class="conteudo">
+                                <span class="nome">{{ resposta.usuario.username }}</span>
+                                <p class="texto">{{ resposta.texto|urlize|linebreaksbr }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+
+
+<!-- SEÇÃO MATERIAL -->
+<div id="secaoMaterial" class="comentarios ">
+
+    <h2>Material</h2>
+
+    <div style="background:#111; padding:16px; border-radius:10px; margin-top:20px;">
+
+        {% if object.material %}
+            <p style="margin-bottom:10px; color:#bbb;">
+                Material disponível para este episódio:
+            </p>
+
+            <a href="{{ object.material.url }}"
+               target="_blank"
+               style="color:#4f8cff; text-decoration:underline; word-break:break-word;">
+                Baixar material
+            </a>
+
+        {% else %}
+            <p style="color:#aaa;">
+                Nenhum material disponível para este episódio.
+            </p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+        </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    /* ===============================
+       COMENTÁRIOS (Responder / Toggle)
+    =============================== */
+
+    window.abrirFormulario = function(btn) {
+        const conteudo = btn.closest('.conteudo');
+        const form = conteudo.querySelector('.form-resposta');
+
+        document.querySelectorAll('.form-resposta').forEach(f => {
+            if (f !== form) f.style.display = 'none';
+        });
+
+        form.style.display = 'block';
+        form.querySelector('textarea').focus();
+    }
+
+    window.fecharFormulario = function(btn) {
+        btn.closest('.form-resposta').style.display = 'none';
+    }
+
+    window.toggleRespostas = function(btn) {
+        const respostas = btn.closest('.conteudo').querySelector('.respostas');
+        const aberto = respostas.style.display === 'block';
+
+        respostas.style.display = aberto ? 'none' : 'block';
+        btn.textContent = aberto ? btn.dataset.texto : 'Ocultar respostas';
+    }
+
+
+    /* ===============================
+       HEADER SCROLL
+    =============================== */
+
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        const scroll = window.scrollY;
+
+        if (!header) return;
+
+        if (scroll > 90) {
+            if (scroll > window.innerHeight) {
+                header.classList.add('invisible');
+            } else {
+                header.classList.add('bg-gray-900');
+                header.classList.remove('invisible');
+            }
+        } else {
+            header.classList.remove('bg-gray-900', 'invisible');
+        }
+    });
+
+
+    /* ===============================
+       ABAS (Comentários / Material)
+    =============================== */
+
+    const btnComentarios = document.getElementById("btnComentarios");
+    const btnMaterial = document.getElementById("btnMaterial");
+    const secaoComentarios = document.getElementById("secaoComentarios");
+    const secaoMaterial = document.getElementById("secaoMaterial");
+
+    if (btnComentarios && btnMaterial && secaoComentarios && secaoMaterial) {
+
+        btnMaterial.addEventListener("click", function() {
+            secaoComentarios.classList.add("hidden");
+            secaoMaterial.classList.remove("hidden");
+
+            btnMaterial.classList.add("text-white", "border-b-2", "border-blue-500");
+            btnMaterial.classList.remove("text-gray-400");
+
+            btnComentarios.classList.remove("text-white", "border-b-2", "border-blue-500");
+            btnComentarios.classList.add("text-gray-400");
+        });
+
+        btnComentarios.addEventListener("click", function() {
+            secaoMaterial.classList.add("hidden");
+            secaoComentarios.classList.remove("hidden");
+
+            btnComentarios.classList.add("text-white", "border-b-2", "border-blue-500");
+            btnComentarios.classList.remove("text-gray-400");
+
+            btnMaterial.classList.remove("text-white", "border-b-2", "border-blue-500");
+            btnMaterial.classList.add("text-gray-400");
+        });
+
+    }
+
+});
+</script>
+
+
+</body>
+</html>
