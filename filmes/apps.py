@@ -12,9 +12,10 @@ class FilmesConfig(AppConfig):
         email = os.getenv("EMAIL_ADMIN")
         senha = os.getenv("SENHA_ADMIN")
 
-        usuarios = Usuario.objects.filter(email=email)
+        if not email or not senha:
+            return
 
-        if not usuarios:
+        if not Usuario.objects.filter(username="admin").exists():
             Usuario.objects.create_superuser(
                 username="admin",
                 email=email,

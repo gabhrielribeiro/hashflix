@@ -171,7 +171,9 @@ body {
 
                       <div class="item h-64 w-1/4 m-4">
                           <a href="{% url 'filme:filme_detalhe' recente.pk %}">
+                            {% if recente.capa %}
                             <img src="{{recente.capa.url}}" class="rounded-md w-full h-full object-cover">
+                            {% endif %}
                           </a>
                       </div>
 
@@ -189,7 +191,9 @@ body {
 
                       <div class="item h-64 w-1/4 m-4">
                           <a href="{% url 'filme:filme_detalhe' recente.pk %}">
+                            {% if recente.capa %}
                             <img src="{{recente.capa.url}}" class="rounded-md w-full h-full object-cover">
+                            {% endif %}
                           </a>
                       </div>
 
