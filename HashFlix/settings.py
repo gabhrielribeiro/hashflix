@@ -74,8 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #'filmes.novos_contextos.filmes_recentes',
-                #'filmes.novos_contextos.filmes_destaque',
+                'filmes.novos_contextos.filmes_recentes',
+                'filmes.novos_contextos.filmes_destaque',
 
 
 
