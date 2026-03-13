@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn HashFlix.wsgi:application --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile -
+web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn HashFlix.wsgi:application --bind 0.0.0.0:$PORT --access-logfile - --error-logfile - --log-level debug
