@@ -81,7 +81,8 @@ class CriarComentarioView(LoginRequiredMixin, FormView):
         return redirect(self.get_success_url())
 
     def get_success_url(self):
-        return self.request.META.get('HTTP_REFERER', '/')
+        referer = self.request.META.get('HTTP_REFERER', '/')
+        return f"{referer}#secaoComentarios"
 
 
 
