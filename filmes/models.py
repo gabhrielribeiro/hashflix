@@ -24,7 +24,7 @@ class Filme(models.Model):
 class Episodio(models.Model):
     filme = models.ForeignKey(Filme, on_delete=models.CASCADE, related_name='episodios')
     titulo = models.CharField(max_length=100)
-    video = models.FileField(upload_to='episodios')
+    video = models.URLField()
     numero = models.PositiveIntegerField()
     material = models.FileField(upload_to='materiais/', blank=True, null=True)
 
