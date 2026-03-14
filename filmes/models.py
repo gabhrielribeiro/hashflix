@@ -3,8 +3,10 @@ from django.utils import timezone
 from contas.models import Usuario
 
 LISTA_CATEGORIAS = (
-    ('ACAO', 'Ação'),
-    ('TERROR', 'Terror'),
+    ("ANALISES", "Análises"),
+    ("PROGRAMACAO", "Programação"),
+    ("APRESENTACAO", "Apresentação"),
+    ("OUTROS", "Outros"),
 )
 
 
