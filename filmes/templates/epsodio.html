@@ -509,39 +509,59 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* ===============================
-       ABAS (Comentários / Material)
-    =============================== */
+   ABAS (Comentários / Material)
+=============================== */
 
-    const btnComentarios = document.getElementById("btnComentarios");
-    const btnMaterial = document.getElementById("btnMaterial");
-    const secaoComentarios = document.getElementById("secaoComentarios");
-    const secaoMaterial = document.getElementById("secaoMaterial");
+const btnComentarios = document.getElementById("btnComentarios");
+const btnMaterial = document.getElementById("btnMaterial");
+const secaoComentarios = document.getElementById("secaoComentarios");
+const secaoMaterial = document.getElementById("secaoMaterial");
 
-    if (btnComentarios && btnMaterial && secaoComentarios && secaoMaterial) {
+function abrirMaterial() {
+    secaoComentarios.classList.add("hidden");
+    secaoMaterial.classList.remove("hidden");
 
-        btnMaterial.addEventListener("click", function() {
-            secaoComentarios.classList.add("hidden");
-            secaoMaterial.classList.remove("hidden");
+    btnMaterial.classList.add("text-white", "border-b-2", "border-blue-500");
+    btnMaterial.classList.remove("text-gray-400");
 
-            btnMaterial.classList.add("text-white", "border-b-2", "border-blue-500");
-            btnMaterial.classList.remove("text-gray-400");
+    btnComentarios.classList.remove("text-white", "border-b-2", "border-blue-500");
+    btnComentarios.classList.add("text-gray-400");
+}
 
-            btnComentarios.classList.remove("text-white", "border-b-2", "border-blue-500");
-            btnComentarios.classList.add("text-gray-400");
-        });
+function abrirComentarios() {
+    secaoMaterial.classList.add("hidden");
+    secaoComentarios.classList.remove("hidden");
 
-        btnComentarios.addEventListener("click", function() {
-            secaoMaterial.classList.add("hidden");
-            secaoComentarios.classList.remove("hidden");
+    btnComentarios.classList.add("text-white", "border-b-2", "border-blue-500");
+    btnComentarios.classList.remove("text-gray-400");
 
-            btnComentarios.classList.add("text-white", "border-b-2", "border-blue-500");
-            btnComentarios.classList.remove("text-gray-400");
+    btnMaterial.classList.remove("text-white", "border-b-2", "border-blue-500");
+    btnMaterial.classList.add("text-gray-400");
+}
 
-            btnMaterial.classList.remove("text-white", "border-b-2", "border-blue-500");
-            btnMaterial.classList.add("text-gray-400");
-        });
+if (btnComentarios && btnMaterial && secaoComentarios && secaoMaterial) {
 
+    btnMaterial.addEventListener("click", function() {
+        abrirMaterial();
+        history.replaceState(null, null, " ");
+    });
+
+    btnComentarios.addEventListener("click", function() {
+        abrirComentarios();
+        location.hash = "secaoComentarios";
+    });
+
+    if (window.location.hash === "#secaoComentarios") {
+        abrirComentarios();
+
+        setTimeout(() => {
+            secaoComentarios.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+    } else {
+        abrirMaterial();
     }
+
+}
 
 });
 </script>
