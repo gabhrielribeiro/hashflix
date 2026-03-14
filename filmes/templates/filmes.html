@@ -139,15 +139,17 @@ body {
                 <h1 class=" text-3xl md:text-6xl font-semibold">{{filme_principal.titulo}}</h1>
                 <p class="font-medium my-4">{{filme_principal.descricao}}</p>
 
-
-                 <a class="" href="{% url 'filme:epsodio' filme_principal.episodios.first.pk %}">
-                <button class="bg-white py-2 px-12 text-black rounded-md font-medium flex items-center ">
+                {% if filme_principal.episodios.first %}
+                    <a class="" href="{% url 'filme:epsodio' filme_principal.episodios.first.pk %}">
+                    <button class="bg-white py-2 px-12 text-black rounded-md font-medium flex items-center ">
 
                      <ion-icon name="play" class="text-2xl mr-1"></ion-icon>
 
                     Play
 
-                </button></a>
+                    </button></a>
+
+                {% endif %}
             </div>
         </div>
     </section>
