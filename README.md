@@ -36,11 +36,14 @@ A plataforma permite cadastrar cursos e organizar suas aulas em vídeos, que pod
 
 ## ✨ Funcionalidades
 
-✔️ Catálogo de cursos
-✔️ Página de aula com player de vídeo
-✔️ Organização de cursos em aulas
-✔️ Sistema de comentários
-✔️ Gerenciamento de conteúdos pelo Django Admin
+✔️ Sistema de autenticação de usuários  
+✔️ Edição de perfil  
+✔️ Alteração de senha  
+✔️ Catálogo de cursos  
+✔️ Pesquisa de cursos  
+✔️ Organização de cursos em aulas  
+✔️ Sistema de comentários  
+✔️ Gerenciamento de conteúdos pelo Django Admin  
 ✔️ Interface inspirada em plataformas de streaming
 
 ---
