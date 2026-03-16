@@ -1,6 +1,6 @@
 # 🎬 HashFlix
 
-**HashFlix** é uma plataforma de cursos online desenvolvida com **Python e Django**, inspirada na Netflix. A aplicação permite adicionar cursos, aulas e vídeos, oferecendo ao usuário uma experiência de navegação semelhante à de plataformas de streaming.
+**HashFlix** é uma plataforma de cursos online desenvolvida com **Python e Django**, inspirada na Netflix. A aplicação permite adicionar cursos, aulas e vídeos, oferecendo ao usuário uma experiência de navegação semelhante à  plataforma do streaming.
 
 ---
 
@@ -16,7 +16,7 @@ https://hashflix-production-2895.up.railway.app/filmes/
 
 O **HashFlix** foi desenvolvido como um projeto prático para estudar desenvolvimento web com Django, aplicando conceitos de criação de aplicações completas, organização de conteúdo e deploy em produção.
 
-A plataforma permite cadastrar cursos e organizar suas aulas em vídeos, que podem ser gerenciados facilmente através do **Django Admin**.
+A plataforma permite cadastrar cursos e aulas, que podem ser gerenciados facilmente através do Django Admin.
 
 ---
 
@@ -41,10 +41,10 @@ A plataforma permite cadastrar cursos e organizar suas aulas em vídeos, que pod
 ✔️ Alteração de senha  
 ✔️ Catálogo de cursos  
 ✔️ Pesquisa de cursos  
-✔️ Organização de cursos em aulas  
+✔️ Aulas  
 ✔️ Sistema de comentários  
 ✔️ Gerenciamento de conteúdos pelo Django Admin  
-✔️ Interface inspirada em plataformas de streaming
+✔️ Interface inspirada em plataforma da Netflix.
 
 ---
 
