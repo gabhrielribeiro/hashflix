@@ -111,6 +111,18 @@ http://127.0.0.1:8000/admin
 
 ---
 
+⚠️ Configuração de DEBUG para desenvolvimento
+
+No arquivo settings.py, o projeto vem configurado com o modo de depuração desativado:
+
+DEBUG = False
+
+Para executar o projeto em ambiente de desenvolvimento local, altere para:
+
+DEBUG = True
+
+Isso permitirá visualizar erros detalhados no navegador e facilitar o desenvolvimento da aplicação.
+
 ## 📂 Estrutura do projeto
 
 ```
