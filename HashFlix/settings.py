@@ -22,17 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-TOKEN_CSRF = os.getenv('TOKEN_CSRF')
-if TOKEN_CSRF:
-    SECRET_KEY = TOKEN_CSRF
-    CSRF_TRUSTED_ORIGINS = ['https://hashflix-production-2895.up.railway.app']
-else:
-    SECRET_KEY = 'django-insecure-ar*oe(i_*0c+8mbbybzi3qnlliur*=8s_xfcckp_@+t=^*l=s!'
+SECRET_KEY = os.getenv(
+    'SECRET_KEY',
+    'django-insecure-chave-apenas-para-desenvolvimento-local'
+)
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://hashflix-production-2895.up.railway.app'
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hashflix-production-2895.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'hashflix-production-2895.up.railway.app',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
